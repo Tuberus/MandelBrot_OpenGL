@@ -31,7 +31,7 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
         endif()
     endif()
 
-    # Set the toolchain file so CMake knows how to find libraries
+  
     set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
     
     message(STATUS "Vcpkg toolchain configured.")
@@ -39,24 +39,21 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 endif()
 
 
-# Project Definition
+
 project(Mandelbrot VERSION 0.1.0 LANGUAGES CXX)
 
-# Standard: C++17 required for modern math/syntax features
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-# GLOB_RECURSE is convenient for small projects. 
-# If add new files re-run CMake manually.
+
 file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp")
 
-# Define the executable target
+
 add_executable(Mandelbrot ${SOURCES} ${HEADERS})
 
-
-#Dependencies (via vcpkg)
 
 # Graphics API
 find_package(OpenGL REQUIRED)
@@ -83,7 +80,7 @@ target_include_directories(Mandelbrot PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
-# This ensures header files appear in a separate folder in the Solution Explorer.
+
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src" FILES ${HEADERS})
 
 
